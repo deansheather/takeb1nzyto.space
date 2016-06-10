@@ -4,7 +4,9 @@ window.onload = function() {
     var info = document.getElementById('song')
 
     var songs = [
-      ['Alliance - The Speed Of Light [Epic Orchestral Intense]', 'assets/music/music.mp3']
+      ['Alliance - The Speed Of Light', 'assets/music/Alliance - The Speed Of Light.mp3'],
+      ['Dunderpatrullen - To The Moon', 'assets/music/Dunderpatrullen - To The Moon.mp3'],
+      ['NOMA - Brain Power', 'assets/music/NOMA - Brain Power.mp3']
     ]
 
     function nextSong() {
