@@ -166,15 +166,39 @@ var celestial = function () {
 
 // Eyes
 var eyesCount = 0;
+var meewBlocked = false;
+var eyeLimitDisable = false;
+var eyeLimitAsked = false;
 var doMeew = function () {
-  eyesCount++;
-  document.getElementById('meew-mode').innerHTML = 'meew0 mode x' + eyesCount;
+  if(eyesCount <= 9999 || eyeLimitDisable){
+    if(meewBlocked){
+      document.getElementById('meew-mode').innerHTML = 'meew0 mode xRateLimit';
+    }
+    else{
+      eyesCount++;
+      meewBlocked = true;
+      setTimeout(function(){
+        if(meewBlocked){
+          meewBlocked = false;
+          document.getElementById('meew-mode').innerHTML = 'meew0 mode x' + eyesCount;
+        }
+      }, 500);
+      document.getElementById('meew-mode').innerHTML = 'meew0 mode x' + eyesCount;
+      for (var i = 0; i < 5; i++) {
+        bodies.push(new CelestialBody(eyes));
+      }
+    }
+  }
+  else{
+    if(!eyeLimitAsked){
+      eyeLimitAsked = true;
+      eyeLimitDisable = confirm('In order to prevent browser crashing, a limit has been set for meew0 mode. Would you like to disable it anyway?');
+      return;
+    }
+    document.getElementById('meew-mode').innerHTML = 'meew0 mode xTooMuch';
+  }
   document.body.className = 'light';
   lightBg = true;
-
-  for (var i = 0; i < 5; i++) {
-    bodies.push(new CelestialBody(eyes));
-  }
 };
 
 // Draw on ready
@@ -197,6 +221,7 @@ var resetMeew = function () {
   stars = bodies = [];
   clearInterval(window.renderInterval);
   eyesCount = 0;
+  meewBlocked = false;
   document.getElementById('meew-mode').innerHTML = 'meew0 mode';
   document.body.className = '';
   lightBg = true;
