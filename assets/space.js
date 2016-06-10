@@ -187,6 +187,6 @@ var count = function () {
   window.time = window.time + 0.01;
   var f = parseFloat(time).toFixed(2);
   ratelimited.innerText = f;
-  tweet.setAttribute('href', 'https://twitter.com/intent/tweet?url=http%3A%2F%2Ftakeb1nzyto.space&text=I%20got%20ratelimited%20for%20' + f + '%20seconds!&related=deansheather1')
+  tweet.setAttribute('href', 'https://twitter.com/intent/tweet?url=http%3A%2F%2Ftakeb1nzyto.space&text=I%20got%20ratelimited%20for%20' + f + '%20seconds!&related=deansheather1&hashtags=b1nzy,ratelimited')
 };
 setInterval(count, 10);
