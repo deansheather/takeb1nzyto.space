@@ -196,5 +196,9 @@ var resetMeew = function () {
   window.started = false;
   stars = bodies = [];
   clearInterval(window.renderInterval);
+  eyesCount = 0;
+  document.getElementById('meew-mode').innerHTML = 'meew0 mode';
+  document.body.className = '';
+  lightBg = true;
   draw();
 };
