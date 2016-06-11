@@ -143,7 +143,7 @@ var draw = function () {
   celestial();
 
   render();
-  setInterval(render, 1000 / fps);
+  window.renderInterval = setInterval(render, 1000 / fps);
 };
 
 // Celestial body start function
@@ -190,3 +190,11 @@ var count = function () {
   tweet.setAttribute('href', 'https://twitter.com/intent/tweet?url=http%3A%2F%2Ftakeb1nzyto.space&text=I%20got%20ratelimited%20for%20' + f + '%20seconds!&related=deansheather1&hashtags=b1nzy,ratelimited')
 };
 setInterval(count, 10);
+
+// Reset meew0 mode function
+var resetMeew = function () {
+  window.started = false;
+  stars = bodies = [];
+  clearInterval(window.renderInterval);
+  draw();
+};
