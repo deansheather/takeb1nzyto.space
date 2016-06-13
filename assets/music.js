@@ -1,33 +1,34 @@
 // Music player
 window.onload = function() {
     var player = document.getElementById('audio');
-    var info = document.getElementById('song')
+    var songName = document.getElementById('song-name');
+    var songUrl = document.getElementById('song-url');
 
     var songs = [
-      ['Alliance - The Speed Of Light', 'assets/music/Alliance - The Speed Of Light.mp3'],
-      ['Approaching Nirvana & Big Giant Circles - Reboot', 'assets/music/Approaching Nirvana & Big Giant Circles - Reboot.mp3'],
-      ['Big Giant Circles - Go For Distance', 'assets/music/Big Giant Circles - Go For Distance.mp3'],
-      ['Danny Baranowsky - Moonsong', 'assets/music/Danny Baranowsky - Moonsong.mp3'],
-      ['Dunderpatrullen - To The Moon', 'assets/music/Dunderpatrullen - To The Moon.mp3'],
-      ['Graviton Flux - Singularity', 'assets/music/Graviton Flux - Singularity.mp3'],
-      ['Hans Zimmer - Time (Aviators Remix)', 'assets/music/Hans Zimmer - Time (Aviators Remix).mp3'],
-      ['Iseeicy - TIME', 'assets/music/Iseeicy - TIME.mp3'],
-      ['Kai Engel - The Flames of Rome', 'assets/music/Kai Engel - The Flames of Rome.mp3'],
-      ['NOMA - Brain Power', 'assets/music/NOMA - Brain Power.mp3']
-    ]
+      ['Alliance - The Speed Of Light', 'https://www.youtube.com/watch?v=Z8c8MSNk4BY'],
+      ['Approaching Nirvana & Big Giant Circles - Reboot', 'https://www.youtube.com/watch?v=JgXIQwHZ8-0'],
+      ['Big Giant Circles - Go For Distance', 'https://www.youtube.com/watch?v=RF1rFSoN3JQ'],
+      ['Danny Baranowsky - Moonsong', 'https://www.youtube.com/watch?v=MtkECyiRExE'],
+      ['Dunderpatrullen - To The Moon', 'https://www.youtube.com/watch?v=YFMLHCMc91c'],
+      ['Graviton Flux - Singularity', 'https://soundcloud.com/graviton-flux/singularity'],
+      ['Hans Zimmer - Time (Aviators Remix)', 'https://www.youtube.com/watch?v=kfMQcUTtzKg'],
+      ['Iseeicy - TIME', 'https://www.youtube.com/watch?v=nw2qiR6f05Q'],
+      ['Kai Engel - The Flames of Rome', 'https://www.youtube.com/watch?v=Ck-ZYR-etgI'],
+      ['NOMA - Brain Power', 'https://www.youtube.com/watch?v=mj-v6zCnEaw']
+    ];
 
     function nextSong() {
       changeSong(Math.floor(Math.random() * songs.length));
-    };
+    }
 
     function changeSong(val) {
-      var newSong = songs[val][1];
-      song.innerHTML = 'Playing: ' + songs[val][0];
-      player.setAttribute('src', songs[val][1]);
-      player.load();
-      player.play();
-      player.addEventListener('ended', nextSong);
-    };
+        songName.innerHTML = 'Playing: ' + songs[val][0];
+        songUrl.setAttribute('href', songs[val][1]);
+        player.setAttribute('src', 'assets/music/' + songs[val][0] + ".mp3");
+        player.load();
+        player.play();
+        player.addEventListener('ended', nextSong);
+    }
 
     nextSong();
 };
