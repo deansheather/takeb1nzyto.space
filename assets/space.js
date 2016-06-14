@@ -167,12 +167,14 @@ var celestial = function () {
 // Eyes
 var eyesCount = 0;
 var meewBlocked = false;
+var meewBlockAsked = false;
 var doMeew = function () {
   if (meewBlocked) return;
-  if (eyesCount === 4999) {
+  if (eyesCount > 4999 && !meewBlockAsk) {
+    meewBlockAsked = true;
     meewBlocked = confirm('meew0 mode has a ratelimit set, because b1nzy. ¯\_(ツ)_/¯ Would you like to disable this ratelimit?');
     if (meewBlocked) {
-      document.getElementById('meew-mode').innerHTML = 'meew0 mode ratelimited x' + eyesCount;
+      return document.getElementById('meew-mode').innerHTML = 'meew0 mode ratelimited x' + eyesCount;
     }
   }
   eyesCount++;
