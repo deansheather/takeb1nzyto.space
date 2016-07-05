@@ -43,7 +43,7 @@ function visualize(stream) {
 	    ctx.lineTo(canvas.width, canvas.height / 2);
 	    ctx.stroke();
   } else {
-    ctx.clearRect(0, 0, WIDTH, HIEGHT);
+    ctx.clearRect(0, 0, WIDTH, HEIGHT);
   }
  }
  draw();
