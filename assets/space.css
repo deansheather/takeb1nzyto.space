@@ -103,6 +103,17 @@ a:visited {
   bottom: 5px; right: 5px;
 }
 
+.dank-counter {
+  display: inline-block;
+  position: absolute;
+  bottom: 5px; left: 50%;
+}
+
+#dank-count {
+  margin: 0px 10px 0px 10px;
+}
+
+
 /* * * * * * * * * * * * * * * * * * * * *\
   CSShake :: shake-hard
   v1.5.0
