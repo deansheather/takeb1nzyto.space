@@ -14,13 +14,17 @@ window.onload = function() {
       ['Hans Zimmer - Time (Aviators Remix)', 'https://www.youtube.com/watch?v=kfMQcUTtzKg'],
       ['Iseeicy - TIME', 'https://www.youtube.com/watch?v=nw2qiR6f05Q'],
       ['Kai Engel - The Flames of Rome', 'https://www.youtube.com/watch?v=Ck-ZYR-etgI'],
-      ['NOMA - Brain Power', 'https://www.youtube.com/watch?v=mj-v6zCnEaw'],
-      ['Renard - Send It To The Moon', 'https://www.youtube.com/watch?v=J0vUBlcGelI'],
-      ['Teo Wei Yong - Divided Singularity', 'https://www.youtube.com/watch?v=kvJYs14j0bg']
+      ['NOMA - Brain Power', 'https://www.youtube.com/watch?v=mj-v6zCnEaw']
     ];
 
     function nextSong() {
-      changeSong(Math.floor(Math.random() * songs.length));
+        var song = Number(URLSearchToObject().song);
+        if (songs[song] != undefined) {
+            changeSong(song);
+        }
+        else {
+            changeSong(Math.floor(Math.random() * songs.length));
+        }
     }
 
     function changeSong(val) {
@@ -30,6 +34,19 @@ window.onload = function() {
         player.load();
         player.play();
         player.addEventListener('ended', nextSong);
+    }
+    
+    function URLSearchToObject() {
+        var url = document.URL;
+        var request = {};
+        var pairs = url.substring(url.indexOf('?') + 1).split('&');
+        for (var i = 0; i < pairs.length; i++) {
+            if(!pairs[i])
+                continue;
+            var pair = pairs[i].split('=');
+            request[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+         }
+         return request;
     }
 
     nextSong();
