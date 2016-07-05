@@ -1,17 +1,23 @@
 var isVisual = false;
+var context = new AudioContext();
+var analyser = context.createAnalyser();
+var source;
+
 function toggleVisualiser() {
+  source = source || context.createMediaElementSource(audio);
   isVisual = !isVisual;
   visualize(audio);
 }
 
 
-var source = context.createMediaElementSource(audio);
 source.connect(analyser);
 analyser.connect(context.destination);
 analyser.fftSize = 2048;
 var bufferLength = analyser.frequencyBinCount; 
 var dataArray = new Uint8Array(bufferLength); 
+
 function visualize(stream) {
+	
 	function draw() {
 		if (isVisual) {
 		    drawVisual = requestAnimationFrame(draw);
