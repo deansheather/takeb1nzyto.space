@@ -39,8 +39,10 @@ function visualize(stream) {
     }
     ctx.lineTo(canvas.width, canvas.height / 2);
     ctx.stroke();
+    draw();
   } else {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, WIDTH, HIEGHT);
   }
-  
 }
+
+window.onload = visualize(audio);
