@@ -48,4 +48,4 @@ function visualize(stream) {
  }
  draw();
 }
-window.onload = visualize(audio);
+window.onload = visualize(document.getElementById("audio"));
