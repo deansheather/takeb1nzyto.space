@@ -14,7 +14,9 @@ window.onload = function() {
       ['Hans Zimmer - Time (Aviators Remix)', 'https://www.youtube.com/watch?v=kfMQcUTtzKg'],
       ['Iseeicy - TIME', 'https://www.youtube.com/watch?v=nw2qiR6f05Q'],
       ['Kai Engel - The Flames of Rome', 'https://www.youtube.com/watch?v=Ck-ZYR-etgI'],
-      ['NOMA - Brain Power', 'https://www.youtube.com/watch?v=mj-v6zCnEaw']
+      ['NOMA - Brain Power', 'https://www.youtube.com/watch?v=mj-v6zCnEaw'],
+      ['Renard - Send It To The Moon', 'https://www.youtube.com/watch?v=J0vUBlcGelI'],		
+-     ['Teo Wei Yong - Divided Singularity', 'https://www.youtube.com/watch?v=kvJYs14j0bg']
     ];
 
     function nextSong() {
