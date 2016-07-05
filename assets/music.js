@@ -36,6 +36,7 @@ window.onload = function() {
         player.load();
         player.play();
         player.addEventListener('ended', nextSong);
+        visualize(player);
     }
     
     function URLSearchToObject() {
