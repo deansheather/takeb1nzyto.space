@@ -1,3 +1,4 @@
+var isVisual = false;
 function visualize(stream) {
   var context = new AudioContext();
   var analyser = context.createAnalyser();
@@ -13,8 +14,8 @@ function visualize(stream) {
   var dataArray = new Uint8Array(bufferLength); 
 
   function draw() {
+    if (isVisual) {
     drawVisual = requestAnimationFrame(draw);
-
     analyser.getByteTimeDomainData(dataArray);
 
     ctx.lineWidth = 2;
@@ -38,6 +39,8 @@ function visualize(stream) {
     }
     ctx.lineTo(canvas.width, canvas.height / 2);
     ctx.stroke();
+  } else {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
   }
-  draw();
+  
 }
