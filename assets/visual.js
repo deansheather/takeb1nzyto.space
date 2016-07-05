@@ -1,4 +1,7 @@
 var isVisual = false;
+function toggleVisualiser() {
+  isVisual = !isVisual;
+}
 function visualize(stream) {
   var context = new AudioContext();
   var analyser = context.createAnalyser();
