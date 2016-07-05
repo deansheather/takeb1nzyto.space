@@ -3,20 +3,16 @@ function toggleVisualiser() {
   isVisual = !isVisual;
   visualize(audio);
 }
+
+var context = new AudioContext();
+var analyser = context.createAnalyser();
+var source = context.createMediaElementSource(audio);
+source.connect(analyser);
+analyser.connect(context.destination);
+analyser.fftSize = 2048;
+var bufferLength = analyser.frequencyBinCount; 
+var dataArray = new Uint8Array(bufferLength); 
 function visualize(stream) {
-	var context = new AudioContext();
-	var analyser = context.createAnalyser();
-	var source = context.createMediaElementSource(audio);
-	source.connect(analyser);
-	analyser.connect(context.destination);
-	
-	WIDTH = canvas.width;
-	HEIGHT = canvas.height;
-	
-	analyser.fftSize = 2048;
-	var bufferLength = analyser.frequencyBinCount; 
-	var dataArray = new Uint8Array(bufferLength); 
-	
 	function draw() {
 		if (isVisual) {
 		    drawVisual = requestAnimationFrame(draw);
@@ -27,12 +23,12 @@ function visualize(stream) {
 		
 		    ctx.beginPath();
 		
-		    var sliceWidth = WIDTH * 1.0 / bufferLength;
+		    var sliceWidth = canvas.width * 1.0 / bufferLength;
 		    var x = 0;
 		
 		    for(var i = 0; i < bufferLength; i++) {
 		      	var v = dataArray[i] / 128.0;
-		      	var y = v * HEIGHT/2;
+		      	var y = v * canvas.height/2;
 		
 		      	if(i === 0) {
 		        	ctx.moveTo(x, y);
@@ -44,7 +40,7 @@ function visualize(stream) {
 		    ctx.lineTo(canvas.width, canvas.height / 2);
 		    ctx.stroke();
 		} else {
-			ctx.clearRect(0, 0, WIDTH, HEIGHT);
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
 		}
 	}
  draw();
