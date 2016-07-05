@@ -172,7 +172,7 @@ var doMeew = function () {
   if (meewBlocked) return;
   if (eyesCount > 4999 && !meewBlockAsked) {
     meewBlockAsked = true;
-    meewBlocked = confirm('meew0 mode has a ratelimit set, because b1nzy. ¯\_(ツ)_/¯ Would you like to disable this ratelimit?');
+    meewBlocked = confirm('meew0 mode has a ratelimit set, because b1nzy. ¯\\_(ツ)_/¯ Would you like to disable this ratelimit?');
     if (meewBlocked) {
       return document.getElementById('meew-mode').innerHTML = 'meew0 mode ratelimited x' + eyesCount;
     }
