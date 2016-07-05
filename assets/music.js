@@ -20,7 +20,13 @@ window.onload = function() {
     ];
 
     function nextSong() {
-      changeSong(Math.floor(Math.random() * songs.length));
+        var song = Number(URLSearchToObject().song);
+        if (songs[song] != undefined) {
+            changeSong(song);
+        }
+        else {
+            changeSong(Math.floor(Math.random() * songs.length));
+        }
     }
 
     function changeSong(val) {
@@ -30,6 +36,19 @@ window.onload = function() {
         player.load();
         player.play();
         player.addEventListener('ended', nextSong);
+    }
+    
+    function URLSearchToObject() {
+        var url = document.URL;
+        var request = {};
+        var pairs = url.substring(url.indexOf('?') + 1).split('&');
+        for (var i = 0; i < pairs.length; i++) {
+            if(!pairs[i])
+                continue;
+            var pair = pairs[i].split('=');
+            request[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+         }
+         return request;
     }
 
     nextSong();

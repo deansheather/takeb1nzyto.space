@@ -98,6 +98,10 @@ a:visited {
   position: absolute;
   bottom: 5px; left: 5px;
 }
+#visual-toggle {
+  position: absolute;
+  bottom: 5px; right: 5px;
+}
 
 /* * * * * * * * * * * * * * * * * * * * *\
   CSShake :: shake-hard
