@@ -35,7 +35,11 @@ window.config = {
     'clock.png',
     'moon.png',
     'jake.png',
-    'b1nzy-hands.png'
+    'b1nzy-hands.png',
+    'AAAAAAAAAAAAAAH.png',
+    'cromulon.png',
+    'nebula2.png',
+    'satelite.png'
   ],
 
   // Enable audio
