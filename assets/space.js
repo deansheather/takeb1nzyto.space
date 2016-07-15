@@ -41,7 +41,7 @@ window.addEventListener('resize', resize);
 resize();
 
 // Celestial bodies
-var bodyImages = ['nebula.png', 'ring_thing.png', 'b2nzy.png', 'clock.png', 'moon.png', 'jake.png'];
+var bodyImages = ['nebula.png', 'ring_thing.png', 'b2nzy.png', 'clock.png', 'moon.png', 'jake.png', 'b1nzy-hands.png', 'random-internet-grill.jpg'];
 var eyes = new Image();
 eyes.src = 'assets/img/eyes.png';
 
