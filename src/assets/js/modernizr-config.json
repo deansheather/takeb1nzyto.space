@@ -4,7 +4,6 @@
   "feature-detects": [
     "test/audio",
     "test/canvas",
-    "test/emoji",
     "test/requestanimationframe",
     "test/css/animations",
     "test/css/transforms",

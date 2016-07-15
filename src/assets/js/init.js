@@ -16,7 +16,6 @@ if (Modernizr.localstorage) {
 var modernizrTests = [
   'audio',
   'canvas',
-  'emoji',
   'requestanimationframe',
   'cssanimations',
   'csstransforms'
