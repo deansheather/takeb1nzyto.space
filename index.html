@@ -1,54 +1,78 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" class="unsupported-browser loading">
 <head>
   <meta charset="utf-8">
-  <title>Take b1nzy to space</title>
+  <title>🚀 Take b1nzy to space</title>
   <meta name="description" content="You're gonna get ratelimited.">
-  <meta name="keywords" content="b1nzy, b1naryth1ef, binarythief, discord, discordapp, ratelimit, ratelimited, outer-space, space, rocket, rocket ship">
-  <meta property="og:title" content="Take b1nzy to space">
+  <meta name="keywords" content="takeb1nzytospace, take b1nzy to space, b1nzy, b1naryth1ef, binarythief, discord, discordapp, ratelimit, ratelimited, outer-space, space, rocket, rocket ship, meew, meew0, light theme">
+  <meta property="og:title" content="🚀 Take b1nzy to space">
   <meta property="og:description" content="You're gonna get ratelimited.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="http://takeb1nzyto.space">
   <meta property="og:image" name="Image" content="http://takeb1nzyto.space/assets/img/thumb.png"/>
   <link rel="icon" type="image/png" href="assets/img/thumb.png">
-  <link rel="stylesheet" href="assets/space.css">
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:100,300" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/app.min.css">
 </head>
 
 <body>
-  <div class="outer-space">
-    <canvas id="space">Upgrade your browser for the full b1nzy ratelimiting experience.</canvas>
+  <div class="unsupported-message">
+    <img src="assets/img/b1nzy-avatar-with-background.jpg">
+    <h2>Your browser doesn't support new HTML5 and CSS3 technologies needed to get ratelimited.</h2>
+    <p>Please upgrade your browser for the full ratelimiting experience.</p>
+  </div>
 
-    <div class="center-box">
-      <div class="center-inner">
-        <div class="rocket shake-hard shake-constant">
-          <img class="light" src="assets/img/rocket-light.gif"/>
-          <img class="dark" src="assets/img/rocket.gif"/>
-          <div class="porthole">
-            <img src="assets/img/b1nzy.png"/>
-          </div>
+  <div class="loading-cover">
+    <img src="assets/img/sp1nzy.gif">
+    <h2 id="loading-text"></h2>
+    <p>Loading...</p>
+  </div>
+
+  <div class="page-content">
+    <canvas id="space-backdrop"></canvas>
+
+    <div class="outer-space">
+      <div class="inner">
+        <div class="rocket shake-hard shake-enabled">
+          <img class="light" src="assets/img/rocket-light.gif">
+          <img class="dark" src="assets/img/rocket.gif">
+
+          <div class="porthole"><img src="assets/img/b1nzy.png"></div>
         </div>
       </div>
     </div>
+
+    <div class="information">
+      <h1>You've been ratelimited for <span id="ratelimited-time">0</span> seconds.</h1>
+      <h3 id="audio-info">Playing <a id="song" href="#">nothing, yet!</a></h3>
+
+      <p>
+        <a id="tweet-intent" href="javascript:void(0)" target="_blank">Tweet</a>
+        <span id="visualizer">
+          &nbsp;-&nbsp;
+          <a id="visualizer-toggle" href="javascript:void(0)">Visualize</a>
+        </span>
+        <span id="skippable">
+          &nbsp;-&nbsp
+          <a id="skip-song" href="javascript:void(0)">Skip song</a>
+        </span>
+      </p>
+    </div>
+
+    <a id="meew-mode-button" href="javascript:void(0)">meew0 mode</a>
   </div>
 
-  <h1>You've been ratelimited for <span id="ratelimited">0</span> seconds.</h1>
-  <a id="tweet-intent" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Ftakeb1nzyto.space&text=I%20got%20ratelimited%20for%200%20seconds!&related=deansheather1&hashtags=b1nzy,ratelimited" target="_blank">Tweet</a>
-  <a id="meew-mode" href="javascript:void(0)" onclick="doMeew()">meew0 mode<span id="meew-multiplier"></span></a>
-  <a id="song-url" href="javascript:void(0)"><span id="song-name">Playing: Nothing yet!</span></a>
-  <a id="visual-toggle" href="javascript:void(0)" onclick="toggleVisualiser()">Visualize</a>
+  <audio id="audio" style="display: none;" src=""></audio>
 
-
-  <script src="assets/space.js"></script>
-  <script src="assets/visual.js"></script>
-  <script src="assets/music.js"></script>
-  
-  <audio id="audio" autoplay loop style="display: none;" src=""></audio>
+  <script src="assets/js/app.min.js"></script>
 
   <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    !function(a,n,d,r,e,i){a.GoogleAnalyticsObject=d;a[d]||(a[d]=function(){
+    (a[d].q=a[d].q||[]).push(arguments)});a[d].l=+new Date;e=n.createElement(r);
+    i=n.getElementsByTagName(r)[0];e.src='//www.google-analytics.com/analytics.js';
+    i.parentNode.insertBefore(e,i)}(window,document,'ga','script');
 
     ga('create', 'UA-79113616-1', 'auto');
     ga('send', 'pageview');
