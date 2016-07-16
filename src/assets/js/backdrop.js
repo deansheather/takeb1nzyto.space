@@ -77,7 +77,7 @@ function draw () {
       if (++loaded >= config.celestialBodies.length) finish();
     };
 
-    imgs[i].src = 'assets/img/' + config.celestialBodies[i];
+    imgs[i].src = config.cdnBase + 'assets/img/' + config.celestialBodies[i];
   }
 
   function finish () {

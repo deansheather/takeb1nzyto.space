@@ -1,5 +1,8 @@
 // Application configuration
 window.config = {
+  // Content base
+  cdnBase: 'http://take-b1nzy-to-space-assets.deansheather.netdna-cdn.com/',
+
   // Step modifier
   step: 100,
 

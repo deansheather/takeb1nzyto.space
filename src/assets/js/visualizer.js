@@ -1,19 +1,11 @@
 if (config.visualizer && config.audio) {
-  // Visualizer parameters
-  var context = new AudioContext();
-
   window.visualizer = {
     toggled: false,
-    context: context,
-    analyser: context.createAnalyser()
+    analyser: ac.createAnalyser()
   };
 
-  visualizer.analyser.connect(context.destination);
+  visualizer.analyser.connect(ac.destination);
   visualizer.analyser.fftSize = 2048;
-
-  // Audio source
-  var source = context.createMediaElementSource(document.getElementById('audio'));
-  source.connect(visualizer.analyser);
 
   /**
    * Toggle the audio visualizer.
