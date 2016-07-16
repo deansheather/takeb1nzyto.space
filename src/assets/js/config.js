@@ -48,6 +48,9 @@ window.config = {
   // Enable audio
   audio: true,
 
+  // Audio Volume Default
+  audioVolumeDefault: 0.7,
+
   // Audio files
   audioFiles: [
     ['Alliance - The Speed Of Light', 'https://www.youtube.com/watch?v=Z8c8MSNk4BY'],

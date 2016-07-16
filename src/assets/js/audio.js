@@ -4,6 +4,8 @@ if (config.audio) {
     var songEl = document.getElementById('song');
     var previousSong = null;
 
+    player.volume = config.audioVolumeDefault;
+    
     /**
      * Change the current song.
      */
@@ -21,6 +23,17 @@ if (config.audio) {
 
     // Mousetrap handler
     Mousetrap.bind('s', nextSong);
+
+    //Volume Controls
+    Mousetrap.bind('up', function() {
+      player.volume = (player.volume == 1) ? player.volume : Math.round((player.volume + 0.1)*10)/10;
+      Logger.info('[Player] Volume incremented: ' + player.volume);
+    });
+
+    Mousetrap.bind('down', function() {
+      player.volume = (player.volume == 0) ? player.volume : Math.round((player.volume - 0.1)*10)/10;
+      Logger.info('[Player] Volume decremented: ' + player.volume);
+    });
 
     /**
      * Play a song.
