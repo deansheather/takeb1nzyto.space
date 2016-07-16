@@ -8,9 +8,6 @@ if (Modernizr.localstorage) {
     config.cdnBase = '';
     Logger.info('[Logger] Enabled logging.');
   }
-} else {
-  Logger.useDefaults();
-  Logger.info('[Logger] Enabled logging.');
 }
 
 // Test the browser for required features
