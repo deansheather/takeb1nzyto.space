@@ -37,7 +37,7 @@ if (config.visualizer && config.audio) {
         visualizer.analyser.getByteTimeDomainData(dataArray);
 
         backdrop.ctx.lineWidth = 2;
-        backdrop.ctx.strokeStyle = config.lightTheme ? '#010916' : '#fff';
+        backdrop.ctx.strokeStyle = config.lightTheme ? '#010916' : '#bdbdbd';
         backdrop.ctx.beginPath();
 
         var sliceWidth = backdrop.canvas.width * 1.0 / bufferLength;

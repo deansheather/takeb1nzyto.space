@@ -10,6 +10,8 @@ Also, there's this guy called meew0. He hates eyes. He uses the light theme. ¯\
 - `l` => toggle light theme
 - `v` => toggle visualizer
 - `m` => increment meew0 mode
+- `up arrow` => increment audio volume
+- `down arrow` => decrement  audio volume
 
 ### Contributing
 Please make sure that your features are dank. Non-dank features will be declined.
