@@ -42,7 +42,7 @@ window.config = {
     'AAAAAAAAAAAAAAH.png',
     'cromulon.png',
     'nebula2.png',
-    'satelite.png'
+    'satellite.png'
   ],
 
   // Enable audio
