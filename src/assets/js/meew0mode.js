@@ -9,7 +9,7 @@ var meewButton = document.getElementById('meew-mode-button');
 
 // Eyes image
 var eyes = new Image();
-eyes.src = 'assets/img/eyes.png';
+eyes.src = config.cdnBase + 'assets/img/eyes.png';
 
 /**
  * Increment or begin meew0 mode.

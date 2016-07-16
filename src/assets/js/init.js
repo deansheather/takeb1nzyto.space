@@ -5,6 +5,7 @@ Logger.time('init');
 if (Modernizr.localstorage) {
   if (localStorage.getItem('debug')) {
     Logger.useDefaults();
+    config.cdnBase = '';
     Logger.info('[Logger] Enabled logging.');
   }
 } else {
@@ -68,6 +69,8 @@ if (!config.audio) {
   document.getElementById('audio-info').style.display = 'none';
   document.getElementById('skippable').style.display = 'none';
   Logger.info('[Config] Disabled audio.');
+} else {
+  window.ac = new AudioContext();
 }
 
 // Alter the DOM for some features
