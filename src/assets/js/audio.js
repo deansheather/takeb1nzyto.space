@@ -24,13 +24,15 @@ if (config.audio) {
     // Mousetrap handler
     Mousetrap.bind('s', nextSong);
 
-    //Volume Controls
-    Mousetrap.bind('up', function() {
+    // Volume Controls
+    Mousetrap.bind('up', function(e) {
+      e.preventDefault();
       player.volume = (player.volume == 1) ? player.volume : Math.round((player.volume + 0.1)*10)/10;
       Logger.info('[Player] Volume incremented: ' + player.volume);
     });
 
-    Mousetrap.bind('down', function() {
+    Mousetrap.bind('down', function(e) {
+      e.preventDefault();
       player.volume = (player.volume == 0) ? player.volume : Math.round((player.volume - 0.1)*10)/10;
       Logger.info('[Player] Volume decremented: ' + player.volume);
     });
