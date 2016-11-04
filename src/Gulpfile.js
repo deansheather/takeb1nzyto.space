@@ -11,7 +11,6 @@ var gulp = require('gulp');
  * Initialize all required gulp plugins
  */
 var autoprefixer = require('gulp-autoprefixer');
-var cdnizer = require("gulp-cdnizer");
 var changed = require('gulp-changed');
 var cleanCSS = require('gulp-clean-css');
 var gulpif = require('gulp-if');
@@ -43,19 +42,6 @@ gulp.task('compile:production', function () {
     .pipe(gulp.dest('..'));
 
   return gulp.src('../*.html')
-    .pipe(cdnizer({
-      defaultCDNBase: 'http://take-b1nzy-to-space-assets.deansheather.netdna-cdn.com/',
-      files: [
-        'assets/js/app.min.js',
-        'assets/css/app.min.css',
-        'assets/img/thumb.png',
-        'assets/img/b1nzy-avatar-with-background.jpg',
-        'assets/img/sp1nzy.gif',
-        'assets/img/rocket-light.gif',
-        'assets/img/rocket.gif',
-        'assets/img/b1nzy.png'
-      ]
-    }))
     .pipe(version({
       append: {
         key: '_v',
