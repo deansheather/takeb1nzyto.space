@@ -24,3 +24,9 @@ $ npm install gulp -g
 $ cd src
 $ gulp
 ```
+
+### Set Take B1nzy To Space As Your Desktop Wallpaper
+1. Purchase and download [this](http://store.steampowered.com/app/431960/) software on Steam called [Wallpaper Engine](http://store.steampowered.com/app/431960/)
+2. Download the Take B1nzy To Space wallpaper from the [Workshop](http://steamcommunity.com/sharedfiles/filedetails/?id=819157933)
+3. Enjoy ![Gif](https://owo.whats-th.is/ebb3e1.gif)
+(Thanks to PikaDude for the Live Desktop Wallpaper)
