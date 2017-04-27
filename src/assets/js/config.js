@@ -64,7 +64,8 @@ window.config = {
     ['Kai Engel - The Flames of Rome', 'https://www.youtube.com/watch?v=Ck-ZYR-etgI'],
     ['NOMA - Brain Power', 'https://www.youtube.com/watch?v=mj-v6zCnEaw'],
     ['Renard - Send It To The Moon', 'https://www.youtube.com/watch?v=J0vUBlcGelI'],
-    ['Teo Wei Yong - Divided Singularity', 'https://www.youtube.com/watch?v=kvJYs14j0bg']
+    ['Teo Wei Yong - Divided Singularity', 'https://www.youtube.com/watch?v=kvJYs14j0bg'],
+    ['Bag Raiders - Shooting Stars', 'https://www.youtube.com/watch?v=feA64wXhbjo']
   ],
 
   // Loading quotes
