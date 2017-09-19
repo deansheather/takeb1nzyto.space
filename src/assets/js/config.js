@@ -61,6 +61,7 @@ window.config = {
     ['Graviton Flux - Singularity', 'https://soundcloud.com/graviton-flux/singularity'],
     ['Hans Zimmer - Time (Aviators Remix)', 'https://www.youtube.com/watch?v=kfMQcUTtzKg'],
     ['Iseeicy - TIME', 'https://www.youtube.com/watch?v=nw2qiR6f05Q'],
+    ['Queen - Don\'t Stop Me Now', 'https://www.youtube.com/watch?v=HgzGwKwLmgM'],
     ['Kai Engel - The Flames of Rome', 'https://www.youtube.com/watch?v=Ck-ZYR-etgI'],
     ['NOMA - Brain Power', 'https://www.youtube.com/watch?v=mj-v6zCnEaw'],
     ['Renard - Send It To The Moon', 'https://www.youtube.com/watch?v=J0vUBlcGelI'],
