@@ -1,10 +1,16 @@
+@-ms-viewport {
+  width: device-width;
+}
+
 .unsupported-message {
   max-width: 600px;
   margin: 150px auto 0 auto;
   display: block;
 }
+
 .unsupported-message img {
-  height: 200px; width: 200px;
+  height: 200px;
+  width: 200px;
   border-radius: 100px;
 }
 
@@ -13,8 +19,10 @@
   margin: 150px auto 0 auto;
   display: none;
 }
+
 .loading-cover img {
-  height: 200px; width: 200px;
+  height: 200px;
+  width: 200px;
 }
 
 .page-content {
@@ -24,24 +32,29 @@
 html.supported-browser .unsupported-message {
   display: none;
 }
+
 html.supported-browser.loading .loading-cover {
   display: block;
 }
+
 html.loaded .page-content {
   display: block;
 }
 
 html, body {
   width: 100%;
-  margin: 0; padding: 0;
+  margin: 0;
+  padding: 0;
   overflow: hidden;
   text-align: center;
   color: #fff;
   font-family: Lato, Arial, Helvetica, sans-serif;
 }
+
 body {
   background-color: #010916;
 }
+
 body.light-theme {
   background-color: #fff;
   color: #010916;
@@ -55,50 +68,64 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
 a:hover {
   text-decoration: underline;
 }
+
 a:visited {
   color: inherit;
 }
 
 canvas {
   position: absolute;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   z-index: -10000;
 }
 
 .outer-space {
-  height: 100%; width: 50%;
+  height: 100%;
+  width: 50%;
   position: absolute;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   display: table;
   z-index: -9000;
 }
+
 .inner {
   display: table-cell;
   vertical-align: middle;
 }
+
 .rocket {
   height: 703px;
   display: block !important;
 }
+
 .rocket > img {
   margin: 20px auto 0 auto;
 }
+
 body.light-theme .rocket > .dark {
   display: none;
 }
+
 body:not(.light-theme) .rocket > .light {
   display: none;
 }
+
 .rocket .porthole {
-  height: 150px; width: 150px;
+  height: 150px;
+  width: 150px;
   position: relative;
-  top: -500px; left: calc(50% - 75px);
+  top: -500px;
+  left: calc(50% - 75px);
   z-index: -9999;
   background-color: #5D7582;
 }
+
 .rocket .porthole img {
   width: 100px;
   position: relative;
@@ -108,25 +135,84 @@ body:not(.light-theme) .rocket > .light {
   -webkit-transform: rotate(-10deg);
   transform: rotate(-10deg);
 }
+
 html:hover .porthole img {
   top: 25px;
 }
 
 .information {
   position: absolute;
-  bottom: 100px; right: 150px;
+  bottom: 100px;
+  right: 150px;
   text-align: right;
 }
+
 .information h1 {
   margin: 0;
 }
+
 .information h3 {
   margin: 0 0 15px 0;
 }
 
 #meew-mode-button {
   position: absolute;
-  top: 5px; right: 5px;
+  top: 5px;
+  right: 5px;
+}
+
+@media screen and (max-width: 768px) {
+  .page-content {
+    height: 100vh;
+  }
+
+  .outer-space {
+    position: static;
+    width: 100%;
+    flex-grow: 1;
+  }
+
+  .outer-space, .outer-space .inner {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .rocket {
+    max-height: 65vh;
+  }
+
+  .rocket .porthole img {
+    max-width: 100%;
+    width: auto;
+  }
+
+  .information {
+    height: 30vh;
+    flex-shrink: 0;
+  }
+
+  .information h1 {
+    font-size: 28px;
+  }
+
+  .information h3 {
+    font-size: 20px;
+  }
+
+  html.loaded .page-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .information {
+    position: static;
+    padding: 10px 20px;
+  }
 }
 
 /* * * * * * * * * * * * * * * * * * * * *\
