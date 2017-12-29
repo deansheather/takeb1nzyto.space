@@ -4,7 +4,11 @@ if (config.audio) {
     var songEl = document.getElementById('song');
     var previousSong = null;
 
-    player.volume = config.audioVolumeDefault;
+    if (localStorage.getItem('takeb1nzytospace:playerVolume') !== null) {
+      player.volume = parseFloat(localStorage.getItem('takeb1nzytospace:playerVolume'));
+    } else {
+      player.volume = config.audioVolumeDefault;
+    }
     
     /**
      * Change the current song.
@@ -28,12 +32,14 @@ if (config.audio) {
     Mousetrap.bind('up', function(e) {
       e.preventDefault();
       player.volume = (player.volume == 1) ? player.volume : Math.round((player.volume + 0.1)*10)/10;
+      localStorage.setItem('takeb1nzytospace:playerVolume', player.volume);
       Logger.info('[Player] Volume incremented: ' + player.volume);
     });
 
     Mousetrap.bind('down', function(e) {
       e.preventDefault();
       player.volume = (player.volume == 0) ? player.volume : Math.round((player.volume - 0.1)*10)/10;
+      localStorage.setItem('takeb1nzytospace:playerVolume', player.volume);
       Logger.info('[Player] Volume decremented: ' + player.volume);
     });
 
