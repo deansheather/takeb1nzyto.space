@@ -21,8 +21,11 @@ window.config = {
   // Enable meew0 mode
   meew0Mode: true,
 
-  // Amount of eyes to be added per meew0 mode level
-  meew0ModeEyesPerLevel: 8,
+  // Amount of eyes to be added per meew0 mode increment
+  meew0ModeEyesPerLevel: 5,
+
+  // Keyword to disable meew0 mode when prompted
+  meew0ModeKeyword: 'andrei',
 
   // Enable visualizer
   visualizer: true,

@@ -16,7 +16,8 @@ var modernizrTests = [
   'canvas',
   'requestanimationframe',
   'cssanimations',
-  'csstransforms'
+  'csstransforms',
+  'localstorage'
 ];
 
 for (var i = 0; i < modernizrTests.length; i++) {

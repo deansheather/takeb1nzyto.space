@@ -11,6 +11,8 @@ var meewButton = document.getElementById('meew-mode-button');
 var eyes = new Image();
 eyes.src = config.cdnBase + 'assets/img/eyes.png';
 
+// Secret keyword
+
 /**
  * Increment or begin meew0 mode.
  */
@@ -21,9 +23,10 @@ function incrementMeew0Mode() {
   if (meew0Mode.count > 4999 && !meew0Mode.askedBlock) {
     meew0Mode.askedBlock = true;
     Logger.info('[meew0 mode] Asking to ratelimit meew0 mode.');
-    meew0Mode.blocked = !confirm('meew0 mode has a ratelimit set, because b1nzy. ¯\\\_(ツ)_/¯ Would you like to disable this ratelimit?');
-
-    if (meew0Mode.blocked) {
+    var keyword = prompt("meew0 mode has a ratelimit of 5,000 presses per session because the whole site is themed around ratelimits.\n\nWe can disable this ratelimit for you (be careful, bluescreens have happened in the past because people have reached high meew0 mode multipliers), just enter the secret word \"" + config.meew0ModeKeyword + "\" into the text box below and click \"OK\".\n\nIf you want to disable the meew0 mode button (and 'm' keybind), just click \"Cancel\".");
+    
+    if (typeof keyword !== 'string' || keyword.toLowerCase() !== config.meew0ModeKeyword) {
+      meew0Mode.blocked = true;
       Logger.info('[meew0 mode] Meew0 mode ratelimited after ' + meew0Mode.count + ' increments.');
       return meewButton.innerText = 'meew0 mode ratelimited x' + meew0Mode.count;
     }
@@ -40,7 +43,7 @@ function incrementMeew0Mode() {
   }
 
   // Add the eyes
-  for (var i = 0; i < 5; i++) {
+  for (var i = 0; i < config.meew0ModeEyesPerLevel; i++) {
     celestials.push(new CelestialBody(eyes));
   }
 };
