@@ -55,18 +55,18 @@ window.config = {
   audioFiles: [
     ['Alliance - The Speed Of Light', 'https://www.youtube.com/watch?v=Z8c8MSNk4BY'],
     ['Approaching Nirvana & Big Giant Circles - Reboot', 'https://www.youtube.com/watch?v=JgXIQwHZ8-0'],
+    ['Bag Raiders - Shooting Stars', 'https://www.youtube.com/watch?v=feA64wXhbjo'],
     ['Big Giant Circles - Go For Distance', 'https://www.youtube.com/watch?v=RF1rFSoN3JQ'],
     ['Danny Baranowsky - Moonsong', 'https://www.youtube.com/watch?v=MtkECyiRExE'],
     ['Dunderpatrullen - To The Moon', 'https://www.youtube.com/watch?v=YFMLHCMc91c'],
     ['Graviton Flux - Singularity', 'https://soundcloud.com/graviton-flux/singularity'],
     ['Hans Zimmer - Time (Aviators Remix)', 'https://www.youtube.com/watch?v=kfMQcUTtzKg'],
     ['Iseeicy - TIME', 'https://www.youtube.com/watch?v=nw2qiR6f05Q'],
-    ['Queen - Don\'t Stop Me Now', 'https://www.youtube.com/watch?v=HgzGwKwLmgM'],
     ['Kai Engel - The Flames of Rome', 'https://www.youtube.com/watch?v=Ck-ZYR-etgI'],
     ['NOMA - Brain Power', 'https://www.youtube.com/watch?v=mj-v6zCnEaw'],
+    ["Queen - Don't Stop Me Now", 'https://www.youtube.com/watch?v=HgzGwKwLmgM'],
     ['Renard - Send It To The Moon', 'https://www.youtube.com/watch?v=J0vUBlcGelI'],
-    ['Teo Wei Yong - Divided Singularity', 'https://www.youtube.com/watch?v=kvJYs14j0bg'],
-    ['Bag Raiders - Shooting Stars', 'https://www.youtube.com/watch?v=feA64wXhbjo']
+    ['Teo Wei Yong - Divided Singularity', 'https://www.youtube.com/watch?v=kvJYs14j0bg']
   ],
 
   // Loading quotes
