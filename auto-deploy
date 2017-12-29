@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# Exit with nonzero exit code if anything fails
+set -e
+
+# Pull requests and commits to other branches shouldn't be deployed
+if [ "$TRAVIS_PULL_REQUEST" != "false" -o "$TRAVIS_BRANCH" != "$DEPLOY_GIT_SOURCE_BRANCH" ]; then
+    echo "Pull request or push to non-$DEPLOY_GIT_SOURCE_BRANCH branch; skipping deploy."
+    exit 0
+fi
+
+# Save some useful information
+REPO=`git config remote.origin.url`
+SSH_REPO=${REPO/https:\/\/github.com\//git@github.com:}
+SHA=`git rev-parse --verify HEAD`
+
+# Clone the existing gh-pages for this repo into out/
+# Create a new empty branch if gh-pages doesn't exist yet (should only happen on first deploy)
+git clone $REPO out
+cd out
+git checkout $DEPLOY_GIT_BRANCH || git checkout --orphan $DEPLOY_GIT_BRANCH
+
+# Clean out existing contents
+find . -maxdepth 1 ! -name '.git' ! -name '.gitignore' -exec rm -rf {} \;
+cd ..
+
+# Move compiled and tested site to out/
+cp -r dist/* out/
+
+# Now let's go have some fun with the cloned repo
+cd out
+git config user.name "$DEPLOY_GIT_NAME"
+git config user.email "$DEPLOY_GIT_EMAIL"
+
+# If there are no changes to the compiled out (e.g. this is a README update) then just bail.
+if [ $(git status --porcelain | wc -l) -lt 1 ]; then
+    echo "No changes to the output on this push; exiting."
+    exit 0
+fi
+
+# Commit the "changes", i.e. the new version.
+# The delta will show diffs between new and old versions.
+git add . && git add -A .
+git commit -m "Deploy to GitHub Pages: ${SHA}"
+
+# Now that we're all set up, we can push.
+git push $SSH_REPO $DEPLOY_GIT_BRANCH

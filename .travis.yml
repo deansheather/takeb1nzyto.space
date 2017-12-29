@@ -1,0 +1,30 @@
+nguage: node_js
+node_js:
+  - "6"
+
+cache:
+  directories:
+    - "node_modules"
+
+env:
+  global:
+  - DEPLOY_GIT_NAME: Dean Sheather
+  - DEPLOY_GIT_EMAIL: dean@deansheather.com
+  - DEPLOY_GIT_SOURCE_BRANCH: master
+  - DEPLOY_GIT_BRANCH: gh-pages
+
+install:
+- npm install
+
+before_script:
+  - npm install -g gulp-cli
+script:
+  - gulp
+
+after_success:
+- openssl aes-256-cbc -K $encrypted_eeaf33ea05b1_key -iv $encrypted_eeaf33ea05b1_iv
+  -in deploy_key.enc -out deploy_key -d
+- chmod 600 ./deploy_key
+- eval `ssh-agent -s`
+- ssh-add ./deploy_key
+- ./auto-deploy

@@ -16,8 +16,8 @@ Also, there's this guy called meew0. He hates eyes. He uses the light theme. ¯\
 ### Contributing
 Please make sure that your features are dank. Non-dank features will be declined.
 
-### Building
-Please build the source into the final compressed version of the site before you create a pull request.
+### Development
+During development, you will need to test the site. Use `gulp dev`. Travis will build the site and push to `gh-pages` when your commits get added to `master`.
 
 ```
 $ npm install gulp -g
@@ -25,8 +25,8 @@ $ cd src
 $ gulp
 ```
 
-### Set Take B1nzy To Space As Your Desktop Wallpaper
-1. Purchase and download [this](http://store.steampowered.com/app/431960/) software on Steam called [Wallpaper Engine](http://store.steampowered.com/app/431960/)
-2. Download the Take B1nzy To Space wallpaper from the [Workshop](http://steamcommunity.com/sharedfiles/filedetails/?id=819157933)
-3. Enjoy ![Gif](https://owo.whats-th.is/ebb3e1.gif)
-(Thanks to PikaDude for the Live Desktop Wallpaper)
+### Set takeb1nzyto.space as your wallpaper (by PikaDude)
+1. Purchase and download [Wallpaper Engine](http://store.steampowered.com/app/431960) from Steam
+2. Download the wallpaper from the [workshop](http://steamcommunity.com/sharedfiles/filedetails/?id=819157933)
+3. Enjoy: [.gif recording](https://owo.whats-th.is/ebb3e1.gif)
+
