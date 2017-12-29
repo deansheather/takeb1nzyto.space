@@ -22,6 +22,11 @@ CelestialBody.prototype.reconfig = function () {
   // Transparency
   this.trans = Math.random();
   this.trans = this.trans > 0.5 ? this.trans : 0.5;
+
+  // Rotation
+  this.rotation = Math.floor(Math.random() * 180) + 1; // degrees
+  this.rotate_by = Math.floor(Math.random() * 3) + 1; // degrees
+  this.rotate_by = Math.random() > 0.5 ? -1 * this.rotate_by : this.rotate_by; // add direction
 };
 
 /**
@@ -34,14 +39,30 @@ CelestialBody.prototype.render = function (ctx) {
   // Calculate the step for the movement
   var step = config.celestialSpeed / config.step * this.depth;
 
-  // Calculate the width of the celestial body
+  // Calculate the width and height of the celestial body
   var width = (config.celestialSpeed > 200 ? 200 : config.celestialSpeed) * this.depth;
   width = width < 50 ? 50 : width;
+  var height = (this.img.height / this.img.width) * width;
+
+  // Rotate the canvas
+  ctx.save();
+  this.rotation += this.rotate_by;
+  if (this.rotation > 180) {
+    this.rotation = -180 + (this.rotation - 180);
+  }
+  if (this.rotation < -180) {
+    this.rotation = 180 - (this.rotation + 180);
+  }
+  ctx.translate(this.x + width/2, this.y + height/2);
+  ctx.rotate(this.rotation*Math.PI/180);
 
   // Render the celestial body
   ctx.globalAlpha = this.trans;
-  ctx.drawImage(this.img, this.x, this.y, width, (this.img.height / this.img.width) * width);
+  ctx.drawImage(this.img, -width/2, -height/2, width, height);
   ctx.globalAlpha = 1;
+
+  // Restore rotation and translation state
+  ctx.restore();
 
   // Apply step for next render
   this.y = this.y + step;
