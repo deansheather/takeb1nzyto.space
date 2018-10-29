@@ -1,5 +1,6 @@
 if (config.audio) {
   r(function () {
+    var isPlaying = false;
     var player = document.getElementById('audio');
     var songEl = document.getElementById('song');
     var previousSong = null;
@@ -54,7 +55,17 @@ if (config.audio) {
 
       player.setAttribute('src', 'assets/music/' + song[0] + '.mp3');
       player.load();
-      player.play();
+      var promise = player.play();
+      if (promise != undefined) {
+        promise.then(_ => {
+          // Autoplay started.
+          isPlaying = true;
+          console.log("Autoplay succeeded! Wow!");
+        }).catch(error => {
+          // Autoplay failed.
+          console.log("Autoplay failed. Ripperoni.");
+        });
+      }
       player.addEventListener('ended', nextSong);
 
       Logger.info('[Player] Started playing ' + song[0] + '.');
@@ -68,5 +79,12 @@ if (config.audio) {
     }
 
     nextSong();
+
+    document.onclick = function () {
+      if (!isPlaying) {
+        player.play();
+        isPlaying = true
+      }
+    }
   })
 }
