@@ -3,6 +3,7 @@ if (config.audio) {
     var isPlaying = false;
     var player = document.getElementById('audio');
     var songEl = document.getElementById('song');
+    var autoplayBad = document.getElementById('autoplay-bad');
     var previousSong = null;
 
     if (localStorage.getItem('takeb1nzytospace:playerVolume') !== null) {
@@ -60,9 +61,11 @@ if (config.audio) {
         promise.then(_ => {
           // Autoplay started.
           isPlaying = true;
+          autoplayBad.style.display = 'none';
           console.log("Autoplay succeeded! Wow!");
         }).catch(error => {
           // Autoplay failed.
+          autoplayBad.style.display = 'unset';
           console.log("Autoplay failed. Ripperoni.");
         });
       }
@@ -83,7 +86,8 @@ if (config.audio) {
     document.onclick = function () {
       if (!isPlaying) {
         player.play();
-        isPlaying = true
+        isPlaying = true;
+        autoplayBad.style.display = 'none';
       }
     }
   })
