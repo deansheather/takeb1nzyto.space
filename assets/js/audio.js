@@ -11,7 +11,7 @@ if (config.audio) {
     } else {
       player.volume = config.audioVolumeDefault;
     }
-    
+
     /**
      * Change the current song.
      */
@@ -57,13 +57,13 @@ if (config.audio) {
       player.setAttribute('src', 'assets/music/' + song[0] + '.mp3');
       player.load();
       var promise = player.play();
-      if (promise != undefined) {
-        promise.then(_ => {
+      if (promise !== undefined) {
+        promise.then(function () {
           // Autoplay started.
           isPlaying = true;
           autoplayBad.style.display = 'none';
           console.log("Autoplay succeeded! Wow!");
-        }).catch(error => {
+        }).catch(function () {
           // Autoplay failed.
           autoplayBad.style.display = 'unset';
           console.log("Autoplay failed. Ripperoni.");
