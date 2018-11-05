@@ -194,6 +194,10 @@ html:hover .porthole img {
   right: 5px;
 }
 
+#autoplay-bad {
+  display: none;
+}
+
 @media screen and (max-width: 768px) {
   .page-content {
     height: 100vh;
