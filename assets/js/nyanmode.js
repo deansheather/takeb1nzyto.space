@@ -1,23 +1,36 @@
+// Initial variables
+window.nyanMode = {
+  count: 0,
+  active: false,
+  hideCelestialBodies: false,
+  alternativeStars: false
+};
+
 var nyanButton = document.getElementById('nyan-mode-button');
-var nyanModeCount = 0;
 
 /*
  * Toggle nyan cat mode.
  */
 function toggleNyanMode() {
   if (!config.nyanMode) return;
-  document.body.classList.toggle('nyan-mode');
-  Logger.info('[nyan mode] Toggled nyan cat mode.');
 
-  if (document.body.classList.contains('nyan-mode')) {
-    if (nyanModeCount === 0 && config.nyanSong !== null && window.playSong) {
+  if (nyanMode.active) {
+    document.body.classList.remove('nyan-mode');
+    nyanMode.active = false;
+    nyanMode.hideCelestialBodies = false;
+    nyanMode.alternativeStars = false;
+  } else {
+    document.body.classList.add('nyan-mode');
+    nyanMode.active = true;
+    nyanMode.alternativeStars = config.nyanStars;
+    nyanMode.hideCelestialBodies = config.nyanHideCelestialBodies;
+
+    if (nyanMode.count === 0 && config.nyanSong !== null && window.playSong) {
       window.playSong(config.nyanSong);
     }
   }
 
-  // TODO: stars and celestial bodies
-
-  nyanModeCount++;
+  nyanMode.count++;
 }
 
 // Attach to click handler
@@ -27,5 +40,14 @@ nyanButton.onclick = toggleNyanMode;
 Mousetrap.bind('n', toggleNyanMode);
 
 if (query.hasOwnProperty('nyan')) {
-  document.body.classList.add('nyan-mode');
+  nyanMode.count = -1; // so it doesn't interfere with audio.js
+  toggleNyanMode();
+  nyanMode.count++;
+
+  // Reset all celestial bodies
+  if (Array.isArray(window.celestials)) {
+    for (var i = 0; i < celestials.length; i++) {
+      celestials[i].reconfig();
+    }
+  }
 }

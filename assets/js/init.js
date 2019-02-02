@@ -33,8 +33,8 @@ for (var i = 0; i < modernizrTests.length; i++) {
 document.getElementById('loading-text').innerText = config.loadingQuotes[Math.floor(Math.random() * config.loadingQuotes.length)];
 
 // Set the browser type to "supported"
-document.documentElement.className = document.documentElement.className.replace(/(?:^|\s)unsupported-browser(?!\S)/g , '');
-document.documentElement.className += ' supported-browser';
+document.documentElement.classList.remove('unsupported-browser');
+document.documentElement.classList.add('supported-browser');
 Logger.info('[Modernizr] Set the browser status to supported.');
 
 // On ready function
@@ -71,7 +71,7 @@ if (!config.audio) {
 
 // Alter the DOM for some features
 if (config.lightTheme) {
-  document.getElementsByTagName('body')[0].className += ' light-theme';
+  document.body.classList.add('light-theme');
   Logger.info('[Config] Enabled light theme.');
 }
 

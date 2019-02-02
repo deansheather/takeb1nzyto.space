@@ -11,6 +11,12 @@ var CelestialBody = function (img) {
  * Reset the celestial body to a new starting position.
  */
 CelestialBody.prototype.reconfig = function () {
+  // Don't reconfig is nyan mode says so
+  if (nyanMode.hideCelestialBodies) {
+    this.y = -1000;
+    return;
+  }
+
   // Set the starting position
   var d = getDimensions();
   this.x = Math.round(Math.random() * (d.w + 50)) - 50;
@@ -34,10 +40,19 @@ CelestialBody.prototype.reconfig = function () {
  * @param {CanvasRenderingContext2D} ctx - Canvas 2D context.
  */
 CelestialBody.prototype.render = function (ctx) {
+  // Don't render is this.y = -1000;
+  if (this.y === -1000) {
+    this.reconfig();
+    return;
+  }
+
   var d = getDimensions();
 
   // Calculate the step for the movement
   var step = config.celestialSpeed / config.step * this.depth;
+  if (nyanMode.hideCelestialBodies && step < 20) {
+    step = 20;
+  }
 
   // Calculate the width and height of the celestial body
   var width = (config.celestialSpeed > 200 ? 200 : config.celestialSpeed) * this.depth;

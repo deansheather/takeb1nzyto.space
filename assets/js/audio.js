@@ -1,9 +1,8 @@
 if (config.audio) {
   r(function () {
-    var isPlaying = false;
     var player = document.getElementById('audio');
     var songEl = document.getElementById('song');
-    var autoplayBad = document.getElementById('autoplay-bad');
+    var autoplayText = document.getElementById('audio-autoplay');
     var previousSong = null;
 
     if (localStorage.getItem('takeb1nzytospace:playerVolume') !== null) {
@@ -59,20 +58,26 @@ if (config.audio) {
       var promise = player.play();
       if (promise !== undefined) {
         promise.then(function () {
-          // Autoplay started.
-          isPlaying = true;
-          autoplayBad.style.display = 'none';
-          console.log("Autoplay succeeded! Wow!");
+          // Autoplay started
+          autoplayText.style.display = 'none';
+          Logger.info('[Player] Started playing ' + song[0] + '.');
         }).catch(function () {
-          // Autoplay failed.
-          autoplayBad.style.display = 'unset';
-          console.log("Autoplay failed. Ripperoni.");
+          // Autoplay failed
+          autoplayText.style.display = 'block';
+          Logger.info('[Player] Autoplay failed, waiting for event.');
         });
+      } else {
+        Logger.info('[Player] Started playing ' + song[0] + '.');
       }
       player.addEventListener('ended', nextSong);
-
-      Logger.info('[Player] Started playing ' + song[0] + '.');
     };
+
+    document.body.addEventListener('click', function () {
+      if (player.paused) {
+        player.play();
+        autoplayText.style.display = 'none';
+      }
+    });
 
     if (query.hasOwnProperty('song')) {
       if (config.audioFiles[query.song]) {
@@ -87,13 +92,5 @@ if (config.audio) {
     }
 
     nextSong();
-
-    document.onclick = function () {
-      if (!isPlaying) {
-        player.play();
-        isPlaying = true;
-        autoplayBad.style.display = 'none';
-      }
-    }
-  })
+  });
 }

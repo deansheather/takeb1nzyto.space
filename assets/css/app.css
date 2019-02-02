@@ -86,10 +86,11 @@ html, body {
 
 body {
   background-color: #010916;
+  transition: background-color 400ms;
 }
 
 body.light-theme {
-  background-color: #fff;
+  background-color: #fff !important;
   color: #010916;
 }
 
@@ -175,6 +176,10 @@ body:not(.light-theme) .rocket > .light {
 
 html:hover .porthole img {
   top: 25px;
+}
+
+body.nyan-mode {
+  background-color: #104374;
 }
 
 body:not(.nyan-mode) .nyan {

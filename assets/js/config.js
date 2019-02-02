@@ -7,7 +7,7 @@ window.config = {
   step: 100,
 
   // Celestial speed
-  celestialSpeed: 4000,
+  celestialSpeed: 6000,
 
   // The initial amount of stars
   initialStarsCount: 180,
@@ -33,8 +33,17 @@ window.config = {
   // Replace stars with nyan cat stars in nyan cat mode?
   nyanStars: true,
 
-  // Keep regular celestial bodies in nyan cat mode?
-  nyanCelestialBodies: false,
+  // How many nyan cat stars to show?
+  nyanStarsCount: 20,
+
+  // Size of nyan cat star in pixels (should be divisible by 7 and 2 (for default bitmaps), and not greater than 200)
+  nyanStarSizePx: 56,
+
+  // Speed of nyan cat star in pixels per frame
+  nyanStarSpeed: 60,
+
+  // Hide regular celestial bodies in nyan cat mode?
+  nyanHideCelestialBodies: true,
 
   // Song to play when starting nyan cat mode for the first time (or null to not change song)
   nyanSong: ['Nyanyanyanyanyanyanya! - daniwell (Momone Momo UTAU Cover)', 'https://www.nicovideo.jp/watch/sm13455867'],
@@ -92,6 +101,7 @@ window.config = {
     'Adding a ratelimit to meme creation.',
     "Spinning all day, 'erryday.",
     'HI MOM ITS ANDREI!!!!!!!',
-    "I'll ratelimit you."
+    "I'll ratelimit you.",
+    'Nyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanya!'
   ]
 };

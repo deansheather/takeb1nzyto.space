@@ -85,18 +85,23 @@ function draw () {
       celestials.push(new Star());
     }
 
+    if (config.nyanMode && config.nyanStars) {
+      for (var i = 0; i < config.nyanStarsCount; i++) {
+        celestials.push(new NyanStar());
+      }
+    }
+
     for (var i = 0; i < config.inititalCelestialBodies; i++) {
       celestials.push(new CelestialBody(imgs[Math.floor(Math.random() * imgs.length)]));
     }
 
     render();
-    requestAnimationFrame(render);
     Logger.info('[Renderer] Rendering started.');
     Logger.timeEnd('init');
 
     // Hide loader
-    document.documentElement.className = document.documentElement.className.replace(/(?:^|\s)loading(?!\S)/g , '');
-    document.documentElement.className += ' loaded';
+    document.documentElement.classList.remove('loading');
+    document.documentElement.classList.add('loaded');
   }
 };
 
