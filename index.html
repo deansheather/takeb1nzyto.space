@@ -42,13 +42,18 @@
 
           <div class="porthole"><img src="assets/img/b1nzy.png"></div>
         </div>
+
+        <div class="nyan">
+          <img class="trail" src="assets/img/nyan-trail.gif">
+          <img class="cat" src="assets/img/nyan-cat.gif">
+        </div>
       </div>
     </div>
 
     <div class="information">
       <h1>You've been ratelimited for <span id="ratelimited-time">0</span> seconds.</h1>
-      <h3 id="audio-info">Playing <a id="song" href="#">nothing, yet!</a></h3>
-      <h4 id="autoplay-bad">(Click anywhere on the screen to actually start playing)</h4>
+      <h3 id="audio-info">Playing <a id="song" href="#" target="_blank">nothing, yet!</a></h3>
+      <h3 id="audio-autoplay" style="display: none;">Click anywhere on the screen to start playing music</h3>
 
       <p>
         <a id="tweet-intent" href="javascript:void(0)" target="_blank">Tweet</a>
@@ -64,6 +69,7 @@
     </div>
 
     <a id="meew-mode-button" href="javascript:void(0)" title="Press m">meew0 mode</a>
+    <a id="nyan-mode-button" href="javascript:void(0)" title="Press n">toggle nyan cat mode</a>
   </div>
 
   <audio id="audio" style="display: none;" src=""></audio>
