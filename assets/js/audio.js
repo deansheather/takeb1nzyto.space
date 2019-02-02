@@ -48,7 +48,7 @@ if (config.audio) {
     /**
      * Play a song.
      */
-    function playSong (song) {
+    var playSong = window.playSong = function (song) {
       previousSong = song;
 
       songEl.innerText = song[0];
@@ -72,12 +72,17 @@ if (config.audio) {
       player.addEventListener('ended', nextSong);
 
       Logger.info('[Player] Started playing ' + song[0] + '.');
-    }
+    };
 
     if (query.hasOwnProperty('song')) {
       if (config.audioFiles[query.song]) {
         Logger.info('[Player] Playing song from query string.');
         return playSong(config.audioFiles[query.song]);
+      }
+    } else if (query.hasOwnProperty('nyan')) {
+      if (config.nyanMode && config.nyanSong !== null) {
+        Logger.info('[Player] Playing nyan cat song.');
+        return playSong(config.nyanSong);
       }
     }
 

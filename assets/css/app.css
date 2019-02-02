@@ -132,6 +132,10 @@ canvas {
   vertical-align: middle;
 }
 
+body.nyan-mode .rocket {
+  display: none !important;
+}
+
 .rocket {
   height: 703px;
   display: block !important;
@@ -173,6 +177,34 @@ html:hover .porthole img {
   top: 25px;
 }
 
+body:not(.nyan-mode) .nyan {
+  display: none !important;
+}
+
+.nyan {
+  height: 703px;
+  display: block !important;
+}
+
+.nyan img {
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+
+.nyan .cat {
+  height: 300px;
+}
+
+.nyan .trail {
+  height: 230px;
+  position: relative;
+  top: 859px;
+  z-index: -9999;
+}
+
 .information {
   position: absolute;
   bottom: 100px;
@@ -194,8 +226,10 @@ html:hover .porthole img {
   right: 5px;
 }
 
-#autoplay-bad {
-  display: none;
+#nyan-mode-button {
+  position: absolute;
+  top: 5px;
+  left: 5px;
 }
 
 @media screen and (max-width: 768px) {

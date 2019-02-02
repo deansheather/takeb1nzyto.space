@@ -27,6 +27,18 @@ window.config = {
   // Keyword to disable meew0 mode when prompted
   meew0ModeKeyword: 'andrei',
 
+  // Enable nyan cat mode
+  nyanMode: true,
+
+  // Replace stars with nyan cat stars in nyan cat mode?
+  nyanStars: true,
+
+  // Keep regular celestial bodies in nyan cat mode?
+  nyanCelestialBodies: false,
+
+  // Song to play when starting nyan cat mode for the first time (or null to not change song)
+  nyanSong: ['Nyanyanyanyanyanyanya! - daniwell (Momone Momo UTAU Cover)', 'https://www.nicovideo.jp/watch/sm13455867'],
+
   // Enable visualizer
   visualizer: true,
 
