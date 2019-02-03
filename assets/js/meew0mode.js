@@ -6,6 +6,7 @@ window.meew0Mode = {
 };
 
 var meewButton = document.getElementById('meew-mode-button');
+var lightModeButton = document.getElementById('light-mode-button');
 
 // Eyes image
 var eyes = new Image();
@@ -18,6 +19,7 @@ eyes.src = config.cdnBase + 'assets/img/eyes.png';
  */
 function incrementMeew0Mode() {
   if (!config.meew0Mode || meew0Mode.blocked) return;
+  if (config.nyanMode && nyanMode.hideCelestialBodies) return;
 
   // Handle ratelimits
   if (meew0Mode.count > 4999 && !meew0Mode.askedBlock) {
@@ -37,10 +39,8 @@ function incrementMeew0Mode() {
   meewButton.innerText = 'meew0 mode x' + meew0Mode.count;
 
   // Switch to light theme if not already in light theme mode
-  if (!config.lightTheme) {
-    document.body.className += 'light-theme';
-    config.lightTheme = true;
-  }
+  config.lightTheme = true;
+  document.body.classList.add('light-theme');
 
   // Add the eyes
   for (var i = 0; i < config.meew0ModeEyesPerLevel; i++) {
@@ -48,14 +48,10 @@ function incrementMeew0Mode() {
   }
 };
 
-// Attach to click handler
-meewButton.onclick = incrementMeew0Mode;
-
-// Mousetrap handler for meew0 mode
-Mousetrap.bind('m', incrementMeew0Mode);
-
-// Mousetrap handler for light theme
-Mousetrap.bind('l', function () {
+/*
+ *  Toggle light theme mode.
+ */
+function toggleLightMode() {
   if (config.lightTheme) {
     document.body.classList.remove('light-theme');
     config.lightTheme = false;
@@ -65,4 +61,12 @@ Mousetrap.bind('l', function () {
     config.lightTheme = true;
     Logger.info('[meew0 mode] Enabled light theme.');
   }
-});
+};
+
+// Attach to click handler
+meewButton.onclick = incrementMeew0Mode;
+lightModeButton.onclick = toggleLightMode;
+
+// Mousetrap handlers
+Mousetrap.bind('m', incrementMeew0Mode);
+Mousetrap.bind('l', toggleLightMode);

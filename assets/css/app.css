@@ -225,10 +225,17 @@ body:not(.nyan-mode) .nyan {
   margin: 0 0 15px 0;
 }
 
-#meew-mode-button {
+#meew-mode-button, #light-mode-button {
   position: absolute;
   top: 5px;
   right: 5px;
+}
+
+body.nyan-mode #meew-mode-button, body:not(.nyan-mode) #light-mode-button {
+  display: none;
+}
+body.nyan-mode #light-mode-button, body:not(.nyan-mode) #meew-mode-button {
+  display: inline-block;
 }
 
 #nyan-mode-button {
