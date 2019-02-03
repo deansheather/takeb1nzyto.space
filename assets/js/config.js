@@ -72,6 +72,9 @@ window.config = {
   // Enable audio
   audio: true,
 
+  // Enable the ability to have fun
+  partyMode: true,
+
   // Audio Volume Default
   audioVolumeDefault: 0.7,
 

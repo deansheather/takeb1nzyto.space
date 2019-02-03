@@ -58,6 +58,27 @@
     to { transform:rotate(360deg); }
 }
 
+@-webkit-keyframes rainbow {
+  0%{background-position:0% 82%}
+  50%{background-position:100% 19%}
+  100%{background-position:0% 82%}
+}
+@-moz-keyframes rainbow {
+  0%{background-position:0% 82%}
+  50%{background-position:100% 19%}
+  100%{background-position:0% 82%}
+}
+@-o-keyframes rainbow {
+  0%{background-position:0% 82%}
+  50%{background-position:100% 19%}
+  100%{background-position:0% 82%}
+}
+@keyframes rainbow { 
+  0%{background-position:0% 82%}
+  50%{background-position:100% 19%}
+  100%{background-position:0% 82%}
+}
+
 .page-content {
   display: none;
 }
@@ -88,7 +109,16 @@ html, body {
 body {
   background-color: #010916;
   background-image: linear-gradient(#010916, #110d38);
+  
   transition: background-color 400ms;
+}
+
+body.party-mode {
+  background-size: 1800% 1800%;
+  background-image: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3) !important;
+  -webkit-animation: rainbow 8s ease infinite;
+  -moz-animation: rainbow 8s ease infinite;
+  animation: rainbow 8s ease infinite;
 }
 
 body.light-theme {
