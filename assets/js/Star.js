@@ -27,15 +27,15 @@ Star.prototype.reconfig = function () {
 /**
  * Render the star into the given context in the next position.
  * @param {CanvasRenderingContext2D} ctx - Canvas 2D context.
+ * @param {object} d - Dimentions object.
  */
-Star.prototype.render = function (ctx) {
+Star.prototype.render = function (ctx, d) {
   // Don't render is this.y = -10000;
   if (this.y === -10000) {
     this.reconfig();
     return;
   }
 
-  var d = getDimensions();
   if (nyanMode.alternativeStars && this.y > d.h) this.reconfig();
 
   // Calculate the step for the movement

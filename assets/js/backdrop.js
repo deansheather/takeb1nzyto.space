@@ -55,8 +55,9 @@ window.celestials = [];
 function render () {
   backdrop.ctx.clearRect(0, 0, backdrop.canvas.width, backdrop.canvas.height);
 
+  var d = getDimensions();
   for (var i = 0; i < celestials.length; i++) {
-    celestials[i].render(backdrop.ctx);
+    celestials[i].render(backdrop.ctx, d);
   }
 
   requestAnimationFrame(render);

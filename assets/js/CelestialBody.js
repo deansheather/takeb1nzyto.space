@@ -38,15 +38,14 @@ CelestialBody.prototype.reconfig = function () {
 /**
  * Render the celestial body into the given context in the next position.
  * @param {CanvasRenderingContext2D} ctx - Canvas 2D context.
+ * @param {object} d - Dimentions object.
  */
-CelestialBody.prototype.render = function (ctx) {
+CelestialBody.prototype.render = function (ctx,d ) {
   // Don't render is this.y = -1000;
   if (this.y === -1000) {
     this.reconfig();
     return;
   }
-
-  var d = getDimensions();
 
   // Calculate the step for the movement
   var step = config.celestialSpeed / config.step * this.depth;
