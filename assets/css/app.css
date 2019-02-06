@@ -211,6 +211,35 @@ html:hover .porthole img {
   top: 25px;
 }
 
+#toot-form {
+  visibility: hidden;
+}
+
+#toot-form input {
+  width: 120px;
+  border: none;
+  background-color: rgba(57, 57, 57, 0.5);
+  font-family: inherit;
+  font-size: inherit;
+  color: white;
+  border-bottom: 2px solid #1B6397;
+}
+
+#toot-form button {
+  background-color:  #1B6397;
+  border: none;
+  color: white;
+  padding: 3px 5px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 2px;
+}
+
+#toot-form button:hover {
+  background-color: #175581;
+  cursor: pointer;
+}
+
 body.nyan-mode {
   background-color: #104374;
   background-image: none !important;

@@ -69,11 +69,26 @@ if (!config.audio) {
   Logger.info('[Config] Disabled audio.');
 }
 
+if (!config.mastodonSupport) {
+  document.getElementById('toot').style.display = 'none';
+  document.getElementById('toot-form').style.display = 'none';
+  Logger.info('[Config] Disabled Mastodon Sharing.');
+
+} else {
+  // Set mastadon instance to default if unset
+  if (localStorage.getItem('takeb1nzytospace:mastodon') == null) {
+    localStorage.setItem('takeb1nzytospace:mastodon', window.config.defaultMastodonInstance);
+   }
+   window.mastodonInstance = localStorage.getItem('takeb1nzytospace:mastodon');
+}
+
 // Alter the DOM for some features
 if (config.lightTheme) {
   document.body.classList.add('light-theme');
   Logger.info('[Config] Enabled light theme.');
 }
+
+
 
 // Load the canvas and rendering context for the backdrop into window
 var canvas = document.getElementById('space-backdrop');
