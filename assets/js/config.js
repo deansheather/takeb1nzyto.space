@@ -18,6 +18,12 @@ window.config = {
   // The initial amount of eyes
   initialEyes: 0,
 
+  // Enable Mastodon support
+  mastodonSupport: true,
+
+  // Default Mastodon Instance
+  defaultMastodonInstance: "uwu.social",
+
   // Enable meew0 mode
   meew0Mode: true,
 
