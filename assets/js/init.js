@@ -80,6 +80,7 @@ if (!config.mastodonSupport) {
     localStorage.setItem('takeb1nzytospace:mastodon', window.config.defaultMastodonInstance);
    }
    window.mastodonInstance = localStorage.getItem('takeb1nzytospace:mastodon');
+   document.getElementById("toot-instance").value = window.mastodonInstance;
 }
 
 // Alter the DOM for some features

@@ -37,6 +37,11 @@ document.getElementById('tweet-intent').onclick = tweet;
  * Open Mastodon share prompt in a new tab
  */
 function toot () {
+  var instance = document.getElementById("toot-instance").value;
+
+  if (window.mastodonInstance != instance) {
+    localStorage.setItem("takeb1nzytospace:mastodon", instance);
+  }
   var win = window.open('https://' + window.mastodonInstance + '/share?text=I+got+ratelimited+for+' + formatDiffernce(2) + '+seconds!+++https://takeb1nzyto.space', '_blank');
 
   win.focus();
