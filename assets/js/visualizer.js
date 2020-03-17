@@ -1,25 +1,34 @@
 if (config.visualizer && config.audio) {
-  // Visualizer parameters
-  var context = new AudioContext();
-
   window.visualizer = {
     toggled: false,
-    context: context,
-    analyser: context.createAnalyser()
+    initialized: false,
+    context: null,
+    analyser: null,
   };
 
-  visualizer.analyser.connect(context.destination);
-  visualizer.analyser.fftSize = 2048;
+  function initializeVisualizer() {
+    if (!visualizer.toggled || visualizer.initialized) {
+      return;
+    }
+    visualizer.initialized = true;
 
-  // Audio source
-  var source = context.createMediaElementSource(document.getElementById('audio'));
-  source.connect(visualizer.analyser);
+    visualizer.context = new AudioContext();
+    visualizer.analyser = visualizer.context.createAnalyser();
+
+    visualizer.analyser.connect(visualizer.context.destination);
+    visualizer.analyser.fftSize = 2048;
+
+    // Audio source
+    var source = visualizer.context.createMediaElementSource(document.getElementById('audio'));
+    source.connect(visualizer.analyser);
+  }
 
   /**
    * Toggle the audio visualizer.
    */
-  function toggleVisualiser () {
+  function toggleVisualizer () {
     visualizer.toggled = !visualizer.toggled;
+    initializeVisualizer();
     renderVisualizer();
     Logger.info('[Visualizer] Toggled visualizer to ' + (visualizer.toggled ? 'on' : 'off') + ' state.');
   }
@@ -33,41 +42,44 @@ if (config.visualizer && config.audio) {
 
     function draw() {
       if (visualizer.toggled) {
-        requestAnimationFrame(draw);
-        visualizer.analyser.getByteTimeDomainData(dataArray);
-
-        backdrop.ctx.lineWidth = 2;
-        backdrop.ctx.strokeStyle = config.lightTheme ? '#010916' : '#bdbdbd';
-        backdrop.ctx.beginPath();
-
-        var sliceWidth = backdrop.canvas.width * 1.0 / bufferLength;
-        var x = 0;
-
-        for (var i = 0; i < bufferLength; i++) {
-          var y = (dataArray[i] / 128.0) * backdrop.canvas.height / 2;
-          backdrop.ctx[i === 0 ? 'moveTo' : 'lineTo'](x, y);
-          x += sliceWidth;
-        }
-
-        backdrop.ctx.lineTo(canvas.width, canvas.height / 2);
-        backdrop.ctx.stroke();
+        return;
       }
+      requestAnimationFrame(draw);
+      visualizer.analyser.getByteTimeDomainData(dataArray);
+
+      backdrop.ctx.lineWidth = 2;
+      backdrop.ctx.strokeStyle = config.lightTheme ? '#010916' : '#bdbdbd';
+      backdrop.ctx.beginPath();
+
+      var sliceWidth = backdrop.canvas.width * 1.0 / bufferLength;
+      var x = 0;
+
+      var sum = 0;
+      var peakCount = 0;
+      for (var i = 0; i < bufferLength; i++) {
+        var y = (dataArray[i] / 128.0) * backdrop.canvas.height / 2;
+        backdrop.ctx[i === 0 ? 'moveTo' : 'lineTo'](x, y);
+        x += sliceWidth;
+      }
+
+      backdrop.ctx.lineTo(canvas.width, canvas.height / 2);
+      backdrop.ctx.stroke();
     }
 
     draw();
   }
 
   // Attach to click handler
-  document.getElementById('visualizer-toggle').onclick = toggleVisualiser;
+  document.getElementById('visualizer-toggle').onclick = toggleVisualizer;
 
   // Mousetrap handler
-  Mousetrap.bind('v', toggleVisualiser);
+  Mousetrap.bind('v', toggleVisualizer);
 
   // Autostart on query parameter
   if (query.hasOwnProperty('visualizer')) {
     setTimeout(function () {
-      visualizer.toggled = true;
-      renderVisualizer();
+      visualizer.toggled = false;
+      toggleVisualizer();
     }, 2000);
   }
 }

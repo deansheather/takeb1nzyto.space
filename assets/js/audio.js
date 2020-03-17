@@ -55,42 +55,26 @@ if (config.audio) {
 
       player.setAttribute('src', 'assets/music/' + song[0] + '.mp3');
       player.load();
-      var promise = player.play();
-      if (promise !== undefined) {
-        promise.then(function () {
-          // Autoplay started
-          autoplayText.style.display = 'none';
-          Logger.info('[Player] Started playing ' + song[0] + '.');
-        }).catch(function () {
-          // Autoplay failed
-          autoplayText.style.display = 'block';
-          Logger.info('[Player] Autoplay failed, waiting for event.');
-        });
-      } else {
-        Logger.info('[Player] Started playing ' + song[0] + '.');
-      }
-      player.addEventListener('ended', nextSong);
+      player.play();
+      Logger.info('[Player] Started playing ' + song[0] + '.');
+      player.addEventListener('ended', nextSong, { once: true });
     };
 
     document.body.addEventListener('click', function () {
-      if (player.paused) {
-        player.play();
-        autoplayText.style.display = 'none';
+      autoplayText.style.display = 'none';
+      if (query.hasOwnProperty('song')) {
+        if (config.audioFiles[query.song]) {
+          Logger.info('[Player] Playing song from query string.');
+          return playSong(config.audioFiles[query.song]);
+        }
+      } else if (query.hasOwnProperty('nyan')) {
+        if (config.nyanMode && config.nyanSong !== null) {
+          Logger.info('[Player] Playing nyan cat song.');
+          return playSong(config.nyanSong);
+        }
       }
-    });
 
-    if (query.hasOwnProperty('song')) {
-      if (config.audioFiles[query.song]) {
-        Logger.info('[Player] Playing song from query string.');
-        return playSong(config.audioFiles[query.song]);
-      }
-    } else if (query.hasOwnProperty('nyan')) {
-      if (config.nyanMode && config.nyanSong !== null) {
-        Logger.info('[Player] Playing nyan cat song.');
-        return playSong(config.nyanSong);
-      }
-    }
-
-    nextSong();
+      nextSong();
+    }, { once: true });
   });
 }
