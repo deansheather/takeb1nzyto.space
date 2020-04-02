@@ -38,9 +38,10 @@ CelestialBody.prototype.reconfig = function () {
 /**
  * Render the celestial body into the given context in the next position.
  * @param {CanvasRenderingContext2D} ctx - Canvas 2D context.
+ * @param {number} stepMod - Step modifier (applied after math).
  * @param {object} d - Dimentions object.
  */
-CelestialBody.prototype.render = function (ctx,d ) {
+CelestialBody.prototype.render = function (ctx, stepMod, d) {
   // Don't render is this.y = -1000;
   if (this.y === -1000) {
     this.reconfig();
@@ -48,7 +49,7 @@ CelestialBody.prototype.render = function (ctx,d ) {
   }
 
   // Calculate the step for the movement
-  var step = config.celestialSpeed / config.step * this.depth;
+  var step = (config.celestialSpeed / config.step * this.depth) + stepMod;
   if (nyanMode.hideCelestialBodies && step < 20) {
     step = 20;
   }
