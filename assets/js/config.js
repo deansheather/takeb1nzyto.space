@@ -6,8 +6,8 @@ window.config = {
   // Step modifier
   step: 100,
 
-  // Step increase due to beats
-  stepMod: 10,
+  // Step increase due to beats (this is applied AFTER maths, so it's absolute).
+  stepMod: 40,
 
   // Celestial speed
   celestialSpeed: 6000,

@@ -1,0 +1,100 @@
+diff --git a/assets/js/CelestialBody.js b/assets/js/CelestialBody.js
+index 777a422..7620e97 100644
+--- a/assets/js/CelestialBody.js
++++ b/assets/js/CelestialBody.js
+@@ -40,7 +40,7 @@ CelestialBody.prototype.reconfig = function () {
+  * @param {CanvasRenderingContext2D} ctx - Canvas 2D context.
+  * @param {object} d - Dimentions object.
+  */
+-CelestialBody.prototype.render = function (ctx,d ) {
++CelestialBody.prototype.render = function (ctx, d) {
+   // Don't render is this.y = -1000;
+   if (this.y === -1000) {
+     this.reconfig();
+@@ -48,7 +48,7 @@ CelestialBody.prototype.render = function (ctx,d ) {
+   }
+ 
+   // Calculate the step for the movement
+-  var step = config.celestialSpeed / config.step * this.depth;
++  var step = config.celestialSpeed / config.step * this.depth * window.celestialModifier;
+   if (nyanMode.hideCelestialBodies && step < 20) {
+     step = 20;
+   }
+@@ -60,7 +60,7 @@ CelestialBody.prototype.render = function (ctx,d ) {
+ 
+   // Rotate the canvas
+   ctx.save();
+-  this.rotation += this.rotate_by;
++  this.rotation += this.rotate_by * window.celestialModifier;
+   if (this.rotation > 180) {
+     this.rotation = -180 + (this.rotation - 180);
+   }
+diff --git a/assets/js/Star.js b/assets/js/Star.js
+index d6dd3cf..a2a59b0 100644
+--- a/assets/js/Star.js
++++ b/assets/js/Star.js
+@@ -39,7 +39,7 @@ Star.prototype.render = function (ctx, d) {
+   if (nyanMode.alternativeStars && this.y > d.h) this.reconfig();
+ 
+   // Calculate the step for the movement
+-  var step = config.celestialSpeed / config.step * this.depth;
++  var step = config.celestialSpeed / config.step * this.depth * window.celestialModifier;
+   if (nyanMode.alternativeStars && step < 20) {
+     step = 20;
+   }
+diff --git a/assets/js/init.js b/assets/js/init.js
+index d4b379b..529756c 100644
+--- a/assets/js/init.js
++++ b/assets/js/init.js
+@@ -89,7 +89,8 @@ if (config.lightTheme) {
+   Logger.info('[Config] Enabled light theme.');
+ }
+ 
+-
++// Default celestial body modifier
++window.celestialModifier = 1;
+ 
+ // Load the canvas and rendering context for the backdrop into window
+ var canvas = document.getElementById('space-backdrop');
+diff --git a/assets/js/visualizer.js b/assets/js/visualizer.js
+index 4df7509..1873ce8 100644
+--- a/assets/js/visualizer.js
++++ b/assets/js/visualizer.js
+@@ -43,12 +43,27 @@ if (config.visualizer && config.audio) {
+         var sliceWidth = backdrop.canvas.width * 1.0 / bufferLength;
+         var x = 0;
+ 
++        var sum = 0;
++        var peakCount = 0;
+         for (var i = 0; i < bufferLength; i++) {
+           var y = (dataArray[i] / 128.0) * backdrop.canvas.height / 2;
++          if (i > 0 && i + 1 <= bufferLength) {
++            if ((dataArray[i] > dataArray[i - 1]) && (dataArray[i] > dataArray[i + 1])) {
++              peakCount++;
++              sum += Math.abs(dataArray[i]);
++            }
++          }
+           backdrop.ctx[i === 0 ? 'moveTo' : 'lineTo'](x, y);
+           x += sliceWidth;
+         }
+ 
++        var celestialModifier = sum / 128 / peakCount;
++        if (isNaN(celestialModifier) || celestialModifier <= 0) {
++          celestialModifier = 1;
++        }
++        celestialModifier = 1 + ((celestialModifier - 1) * 50);
++        window.celestialModifier = celestialModifier;
++
+         backdrop.ctx.lineTo(canvas.width, canvas.height / 2);
+         backdrop.ctx.stroke();
+       }
+@@ -70,4 +85,4 @@ if (config.visualizer && config.audio) {
+       renderVisualizer();
+     }, 2000);
+   }
+-}
+\ No newline at end of file
++}
+diff --git a/visualizer.patch b/visualizer.patch
+new file mode 100644
+index 0000000..e69de29

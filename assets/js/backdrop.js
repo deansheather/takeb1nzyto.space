@@ -69,18 +69,20 @@ function render () {
 
   // Apply BPM-based stepMod modifier. If a song has a defined BPM (and optionally
   // an offset), after every beat the celestial bodies will speed up slightly
-  // for a quarter of a beat.
+  // for workMs.
   if (window.currentSong && window.currentSong.bpm && window.player && !window.player.paused) {
-    var curMs = window.player.currentTime * 1000;
+    var bpmMs = 60000 / window.currentSong.bpm;
+    var workMs = bpmMs / 4;
+    // The song is shifted forward by 4/10 workMs so work can start slightly
+    // earlier.
+    var curMs = (window.player.currentTime * 1000) + (workMs / 0.4);
+
     if (window.currentSong.offset) {
       curMs -= window.currentSong.offset;
     }
 
     if (curMs >= 0) {
-      var bpmMs = 60000 / window.currentSong.bpm;
-      var workMs = bpmMs / 3;
-      // Beats are shifted forward by 1/2 workMs so they start earlier.
-      var beatMs = (curMs % bpmMs) - workMs / 2;
+      var beatMs = (curMs % bpmMs);
 
       if (beatMs < workMs) {
         var z = easeQuartMirrored(beatMs / workMs);
