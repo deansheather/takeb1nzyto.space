@@ -51,13 +51,52 @@ resize();
 // All items in this array get render()ed on
 window.celestials = [];
 
+function easeQuartMirrored(t) {
+  if (t < 0.5) {
+    // Ease in.
+    t = 2 * t;
+    return t*t*t*t;
+  } else {
+    // Ease out.
+    t = 2 * (t - 0.5);
+    return 1 - (1-(--t)*t*t*t);
+  }
+}
+
 // Render all stars in the next position.
 function render () {
+  var stepMod = 0
+
+  // Apply BPM-based stepMod modifier. If a song has a defined BPM (and optionally
+  // an offset), after every beat the celestial bodies will speed up slightly
+  // for workMs.
+  if (window.currentSong && window.currentSong.bpm && window.player && !window.player.paused) {
+    var bpmMs = 60000 / window.currentSong.bpm;
+    var workMs = bpmMs / 4;
+    // The song is shifted forward by 4/10 workMs so work can start slightly
+    // earlier.
+    var curMs = (window.player.currentTime * 1000) + (workMs / 0.4);
+
+    if (window.currentSong.offset) {
+      curMs -= window.currentSong.offset;
+    }
+
+    if (curMs >= 0) {
+      var beatMs = (curMs % bpmMs);
+
+      if (beatMs < workMs) {
+        var z = easeQuartMirrored(beatMs / workMs);
+
+        stepMod += z * config.stepMod;
+      }
+    }
+  }
+
   backdrop.ctx.clearRect(0, 0, backdrop.canvas.width, backdrop.canvas.height);
 
   var d = getDimensions();
   for (var i = 0; i < celestials.length; i++) {
-    celestials[i].render(backdrop.ctx, d);
+    celestials[i].render(backdrop.ctx, stepMod, d);
   }
 
   requestAnimationFrame(render);

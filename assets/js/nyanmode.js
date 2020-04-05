@@ -25,8 +25,10 @@ function toggleNyanMode() {
     nyanMode.alternativeStars = config.nyanStars;
     nyanMode.hideCelestialBodies = config.nyanHideCelestialBodies;
 
-    if (nyanMode.count === 0 && config.nyanSong !== null && window.playSong) {
-      window.playSong(config.nyanSong);
+    var song = config.audioFiles.find(a => a.nyanSong);
+    if (nyanMode.count === 0 && config.nyanMode && !!song) {
+      Logger.info('[Player] Playing nyan cat song.');
+      window.playSong && window.playSong(song);
     }
   }
 

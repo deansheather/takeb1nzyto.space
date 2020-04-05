@@ -86,9 +86,10 @@ NyanStar.prototype.reconfig = function () {
 /**
  * Render the nyan mode star into the given context in the next position.
  * @param {CanvasRenderingContext2D} ctx - Canvas 2D context.
+ * @param {number} stepMod - Ignored for NyanStar.
  * @param {object} d - Dimentions object.
  */
-NyanStar.prototype.render = function (ctx, d) {
+NyanStar.prototype.render = function (ctx, stepMod, d) {
   // Don't render if y === -10000
   if (this.y === -10000) {
     return this.reconfig();

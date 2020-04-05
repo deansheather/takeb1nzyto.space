@@ -6,6 +6,9 @@ window.config = {
   // Step modifier
   step: 100,
 
+  // Step increase due to beats (this is applied AFTER maths, so it's absolute).
+  stepMod: 40,
+
   // Celestial speed
   celestialSpeed: 6000,
 
@@ -42,7 +45,8 @@ window.config = {
   // How many nyan cat stars to show?
   nyanStarsCount: 20,
 
-  // Size of nyan cat star in pixels (should be divisible by 7 and 2 (for default bitmaps), and not greater than 200)
+  // Size of nyan cat star in pixels (should be divisible by 7 and 2 (for
+  // default bitmaps), and not greater than 200)
   nyanStarSizePx: 56,
 
   // Speed of nyan cat star in pixels per frame
@@ -50,9 +54,6 @@ window.config = {
 
   // Hide regular celestial bodies in nyan cat mode?
   nyanHideCelestialBodies: true,
-
-  // Song to play when starting nyan cat mode for the first time (or null to not change song)
-  nyanSong: ['Nyanyanyanyanyanyanya! - daniwell (Momone Momo UTAU Cover)', 'https://www.nicovideo.jp/watch/sm13455867'],
 
   // Enable visualizer
   visualizer: true,
@@ -72,7 +73,7 @@ window.config = {
     'AAAAAAAAAAAAAAH.png',
     'cromulon.png',
     'nebula2.png',
-    'satellite.png'
+    'satellite.png',
   ],
 
   // Enable audio
@@ -86,20 +87,101 @@ window.config = {
 
   // Audio files
   audioFiles: [
-    ['Alliance - The Speed Of Light', 'https://www.youtube.com/watch?v=Z8c8MSNk4BY'],
-    ['Approaching Nirvana & Big Giant Circles - Reboot', 'https://www.youtube.com/watch?v=JgXIQwHZ8-0'],
-    ['Bag Raiders - Shooting Stars', 'https://www.youtube.com/watch?v=feA64wXhbjo'],
-    ['Big Giant Circles - Go For Distance', 'https://www.youtube.com/watch?v=RF1rFSoN3JQ'],
-    ['Danny Baranowsky - Moonsong', 'https://www.youtube.com/watch?v=MtkECyiRExE'],
-    ['Dunderpatrullen - To The Moon', 'https://www.youtube.com/watch?v=YFMLHCMc91c'],
-    ['Graviton Flux - Singularity', 'https://soundcloud.com/graviton-flux/singularity'],
-    ['Hans Zimmer - Time (Aviators Remix)', 'https://www.youtube.com/watch?v=kfMQcUTtzKg'],
-    ['Iseeicy - TIME', 'https://www.youtube.com/watch?v=nw2qiR6f05Q'],
-    ['Kai Engel - The Flames of Rome', 'https://www.youtube.com/watch?v=Ck-ZYR-etgI'],
-    ['NOMA - Brain Power', 'https://www.youtube.com/watch?v=mj-v6zCnEaw'],
-    ["Queen - Don't Stop Me Now", 'https://www.youtube.com/watch?v=HgzGwKwLmgM'],
-    ['Renard - Send It To The Moon', 'https://www.youtube.com/watch?v=J0vUBlcGelI'],
-    ['Teo Wei Yong - Divided Singularity', 'https://www.youtube.com/watch?v=kvJYs14j0bg']
+    {
+      id: -1,
+      // Nyan song denotes that it will only play once when nyan mode is loaded
+      nyanSong: true,
+      artist: 'daniwell',
+      title: 'Nyanyanyanyanyanyanya! (Momone Momo UTAU Cover)',
+      url: 'https://www.nicovideo.jp/watch/sm13455867'
+    },
+
+    {
+      id: 0,
+      artist: 'Alliance',
+      title: 'The Speed Of Light',
+      url: 'https://www.youtube.com/watch?v=Z8c8MSNk4BY'
+    },
+    {
+      id: 1,
+      artist: "Approaching Nirvana & Big Giant Circles",
+      title: "Reboot",
+      url: "https://www.youtube.com/watch?v=JgXIQwHZ8-0",
+    },
+    {
+      id: 2,
+      artist: "Bag Raiders",
+      title: "Shooting Stars",
+      bpm: 125,
+      offset: 23335,
+      url: "https://www.youtube.com/watch?v=feA64wXhbjo",
+    },
+    {
+      id: 3,
+      artist: "Big Giant Circles",
+      title: "Go For Distance",
+      url: "https://www.youtube.com/watch?v=RF1rFSoN3JQ",
+    },
+    {
+      id: 4,
+      artist: "Danny Baranowsky",
+      title: "Moonsong",
+      url: "https://www.youtube.com/watch?v=MtkECyiRExE",
+    },
+    {
+      id: 5,
+      artist: "Dunderpatrullen",
+      title: "To The Moon",
+      url: "https://www.youtube.com/watch?v=YFMLHCMc91c",
+    },
+    {
+      id: 6,
+      artist: "Graviton Flux",
+      title: "Singularity",
+      url: "https://soundcloud.com/graviton-flux/singularity",
+    },
+    {
+      id: 7,
+      artist: "Hans Zimmer",
+      title: "Time (Aviators Remix)",
+      url: "https://www.youtube.com/watch?v=kfMQcUTtzKg",
+    },
+    {
+      id: 8,
+      artist: "Iseeicy",
+      title: "TIME",
+      url: "https://www.youtube.com/watch?v=nw2qiR6f05Q",
+    },
+    {
+      id: 9,
+      artist: "Kai Engel",
+      title: "The Flames of Rome",
+      url: "https://www.youtube.com/watch?v=Ck-ZYR-etgI",
+    },
+    {
+      id: 10,
+      artist: "NOMA",
+      title: "Brain Power",
+      url: "https://www.youtube.com/watch?v=mj-v6zCnEaw",
+    },
+    {
+      id: 11,
+      artist: "Queen",
+      title: "Don't Stop Me Now",
+      url: "https://www.youtube.com/watch?v=HgzGwKwLmgM",
+    },
+    {
+      id: 12,
+      artist: "Renard",
+      title: "Send It To The Moon",
+      url: "https://www.youtube.com/watch?v=J0vUBlcGelI",
+    },
+    {
+      id: 13,
+      artist: "Teo Wei Yong",
+      title: "Divided Singularity",
+      url: "https://www.youtube.com/watch?v=kvJYs14j0bg",
+    },
   ],
 
   // Loading quotes
@@ -109,8 +191,8 @@ window.config = {
     'Letting the bass kick.',
     'Adding a ratelimit to meme creation.',
     "Spinning all day, 'erryday.",
-    'HI MOM ITS ANDREI!!!!!!!',
+    'HI MOM ITS ANDREI!1!!1!11!',
     "I'll ratelimit you.",
-    'Nyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanya!'
-  ]
+    'Nyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanyanya!',
+  ],
 };
